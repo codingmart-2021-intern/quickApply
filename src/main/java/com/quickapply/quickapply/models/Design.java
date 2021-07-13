@@ -26,7 +26,11 @@ public class Design {
     private String policies;
     private boolean signature_enabled;
 
-    @OneToMany(targetEntity = Sections.class,cascade = CascadeType.ALL)
+    @OneToMany(
+            targetEntity = Sections.class,
+            cascade = CascadeType.ALL
+
+    )
     private List<Sections> sections;
 
 }
