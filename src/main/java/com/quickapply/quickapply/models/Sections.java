@@ -22,8 +22,6 @@ public class Sections {
     private String title;
     private String details;
 
-
-    @OneToMany(targetEntity = Row.class, cascade = CascadeType.ALL)
-    private List<Row> row;
-
+    @ManyToOne
+    private Design design;
 }

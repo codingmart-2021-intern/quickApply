@@ -1,6 +1,6 @@
 package com.quickapply.quickapply.controllers;
 
-import com.quickapply.quickapply.models.Row;
+import com.quickapply.quickapply.models.Rows;
 import com.quickapply.quickapply.services.RowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ public class RowController {
     private RowService rowService;
 
     @PostMapping("/row/save/{id}")
-    public ResponseEntity<?> saveData(@PathVariable Long id, @RequestBody Row data) throws Exception {
+    public ResponseEntity<?> saveData(@PathVariable Long id, @RequestBody Rows data) throws Exception {
         return new ResponseEntity<>(rowService.addRow(id, data), HttpStatus.CREATED);
     }
 
@@ -24,13 +24,13 @@ public class RowController {
     }
 
     @PutMapping("/row/edit/{id}")
-    public ResponseEntity<?> editData(@PathVariable Long id, @RequestBody Row data) throws Exception {
+    public ResponseEntity<?> editData(@PathVariable Long id, @RequestBody Rows data) throws Exception {
         return new ResponseEntity<>(rowService.editRow(id, data), HttpStatus.OK);
     }
 
 //
 //    @GetMapping("/rows")
-//    public ResponseEntity<?> editData(@PathVariable Long id, @RequestBody Row data) throws Exception {
+//    public ResponseEntity<?> editData(@PathVariable Long id, @RequestBody Rows data) throws Exception {
 //        return new ResponseEntity<>(rowService.editRow(id, data), HttpStatus.OK);
 //    }
 

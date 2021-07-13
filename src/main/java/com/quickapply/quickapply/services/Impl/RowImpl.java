@@ -1,30 +1,28 @@
 package com.quickapply.quickapply.services.Impl;
 
 import com.quickapply.quickapply.Repository.RowRepository;
-import com.quickapply.quickapply.Repository.SectionRepository;
-import com.quickapply.quickapply.models.Design;
-import com.quickapply.quickapply.models.Row;
-import com.quickapply.quickapply.models.Sections;
+import com.quickapply.quickapply.models.Rows;
 import com.quickapply.quickapply.services.RowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class RowImpl implements RowService {
 
-
-    @Autowired
-    private SectionRepository sectionRepository;
-
     @Autowired
     private RowRepository rowRepository;
 
+//    @Override
+//    public List<Row> getRows(Long sectionId) throws Exception {
+//        List<Row> rows = new ArrayList<>();
+//        rowRepository.
+//        return rows;
+//    }
+
     @Override
-    public String addRow(Long id, Row data) throws Exception {
+    public String addRow(Long id, Rows data) throws Exception {
 //        Optional<Sections> sections = sectionRepository.findById(id);
 //        if (sections.isPresent()) {
 //            List<Row> row = new ArrayList<>(sections.get().getRow());
@@ -42,8 +40,8 @@ public class RowImpl implements RowService {
     }
 
     @Override
-    public String editRow(Long id, Row data) throws Exception {
-        Optional<Row> sections = rowRepository.findById(id);
+    public String editRow(Long id, Rows data) throws Exception {
+        Optional<Rows> sections = rowRepository.findById(id);
         if (sections.isPresent()) {
             sections.get().setTitle(data.getTitle());
             sections.get().setDetails(data.getDetails());
@@ -55,7 +53,7 @@ public class RowImpl implements RowService {
 
     @Override
     public String deleteRow(Long id) throws Exception {
-        Optional<Row> sections = rowRepository.findById(id);
+        Optional<Rows> sections = rowRepository.findById(id);
         if (sections.isPresent()) {
             rowRepository.deleteById(id);
             return "Section deleted successfully!!";

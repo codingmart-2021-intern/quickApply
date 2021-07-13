@@ -18,9 +18,6 @@ public class DesignImpl implements DesignService {
     @Autowired
     private DesignRepository designRepository;
 
-    @Autowired
-    private SectionRepository sectionRepository;
-
     //designs
 
     @Override

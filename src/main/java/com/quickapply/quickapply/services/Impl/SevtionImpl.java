@@ -29,14 +29,19 @@ public class SevtionImpl implements SectionService {
     public String addSection(Long id, Sections data) throws Exception {
         Optional<Design> design = designRepository.findById(id);
         if (design.isPresent()) {
-            List<Sections> sections = new ArrayList<>(design.get().getSections());
-            Sections val = Sections.builder().title(data.getTitle()).details(data.getDetails()).build();
-            sections.add(val);
-            design.get().setSections(sections);
-            designRepository.save(design.get());
+            data.setDesign(design.get());
+            sectionRepository.save(data);
             return "Section added successfully!!";
         }
         throw new Exception("Design not found");
+    }
+
+    @Override
+    public List<Sections> getSections(Long id) throws Exception {
+
+        List<Sections> sections = new ArrayList<>();
+        sectionRepository.findByDesignId(id).forEach(sections::add);
+        return sections;
     }
 
     @Override

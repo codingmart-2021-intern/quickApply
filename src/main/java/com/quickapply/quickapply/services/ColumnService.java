@@ -1,4 +1,4 @@
 package com.quickapply.quickapply.services;
 
-public class ColumnsService {
+public interface ColumnService {
 }

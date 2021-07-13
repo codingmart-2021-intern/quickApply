@@ -2,6 +2,8 @@ package com.quickapply.quickapply.services;
 
 import com.quickapply.quickapply.models.Sections;
 
+import java.util.List;
+
 public interface SectionService {
 
     String addSection(Long id, Sections data) throws Exception;
@@ -10,5 +12,5 @@ public interface SectionService {
 
     String deleteSection(Long id) throws Exception;
 
-
+    List<Sections> getSections(Long id) throws Exception;
 }
