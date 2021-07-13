@@ -14,16 +14,16 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Sections {
+public class Row {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sectionId;
+    private Long rowId;
     private String title;
     private String details;
 
-
-    @OneToMany(targetEntity = Row.class, cascade = CascadeType.ALL)
-    private List<Row> row;
+    @OneToMany(targetEntity = Columns.class, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Columns> columns;
 
 }

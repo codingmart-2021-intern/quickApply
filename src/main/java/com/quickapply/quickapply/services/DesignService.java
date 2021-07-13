@@ -13,10 +13,6 @@ public interface DesignService {
 
     String deleteDesign(Long id) throws Exception;
 
-    String addSection(Long id, Sections data) throws Exception;
 
-    String editSection(Long id, Sections data) throws Exception;
-
-    String deleteSection(Long id) throws Exception;
 
 }

@@ -1,9 +1,11 @@
 package com.quickapply.quickapply.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,9 +22,11 @@ public class Design {
     private String title;
     private String email;
     private String details;
+    private String terms;
+    private String policies;
+    private boolean signature_enabled;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "design_id", referencedColumnName = "designId")
+    @OneToMany(targetEntity = Sections.class,cascade = CascadeType.ALL)
     private List<Sections> sections;
 
 }
