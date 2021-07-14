@@ -18,13 +18,11 @@ public class DesignImpl implements DesignService {
     @Autowired
     private DesignRepository designRepository;
 
-    @Autowired
-    private SectionRepository sectionRepository;
-
     //designs
 
     @Override
     public Design saveData(Design data) {
+        data.setSignature_enabled(true);
         return designRepository.save(data);
     }
 
@@ -35,7 +33,7 @@ public class DesignImpl implements DesignService {
         if (design.isPresent()) {
             return design.get();
         }
-        throw new Exception("Design not found");
+        throw new Exception("Design Id not found");
     }
 
     @Override
@@ -47,7 +45,7 @@ public class DesignImpl implements DesignService {
             design.get().setTitle(data.getTitle());
             return designRepository.save(design.get());
         }
-        throw new Exception("Design not found");
+        throw new Exception("Design Id not found");
     }
 
     @Override
@@ -57,7 +55,7 @@ public class DesignImpl implements DesignService {
             designRepository.deleteById(id);
             return "Design deleted successfully!!";
         }
-        throw new Exception("Design not found");
+        throw new Exception("Design Id not found");
     }
 
 }

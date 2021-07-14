@@ -1,13 +1,11 @@
 package com.quickapply.quickapply.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,12 +23,4 @@ public class Design {
     private String terms;
     private String policies;
     private boolean signature_enabled;
-
-    @OneToMany(
-            targetEntity = Sections.class,
-            cascade = CascadeType.ALL
-
-    )
-    private List<Sections> sections;
-
 }

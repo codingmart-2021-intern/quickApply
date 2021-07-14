@@ -1,7 +1,6 @@
 package com.quickapply.quickapply.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +21,6 @@ public class Columns {
     @Embedded
     private InputModel inputModel;
 
-//    @ManyToOne
-//    @JoinColumn(name = "row_id", nullable = false)
-//    @JsonIgnore
-//    private Columns columns;
-
+    @ManyToOne
+    private RowsSection rows;
 }
