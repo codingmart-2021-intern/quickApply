@@ -43,6 +43,7 @@ public class DesignImpl implements DesignService {
             design.get().setEmail(data.getEmail());
             design.get().setDetails(data.getDetails());
             design.get().setTitle(data.getTitle());
+            design.get().setSignature_enabled(data.isSignature_enabled());
             return designRepository.save(design.get());
         }
         throw new Exception("Design Id not found");
