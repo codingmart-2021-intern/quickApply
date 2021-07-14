@@ -25,4 +25,8 @@ public class Design {
     private String policies;
     private boolean signature_enabled;
 
+    @OneToMany(mappedBy = "design")
+//    @JoinColumn(name = "section_id",referencedColumnName = "sectionId")
+    private List<Sections> sections;
+
 }

@@ -23,5 +23,9 @@ public class Sections {
     private String details;
 
     @ManyToOne
+    @JsonIgnore
     private Design design;
+
+    @OneToMany(mappedBy = "sections")
+    private List<RowsSection> rows;
 }
