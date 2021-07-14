@@ -1,10 +1,15 @@
 package com.quickapply.quickapply.services.Impl;
 
+import com.quickapply.quickapply.Repository.ColumnsRepository;
 import com.quickapply.quickapply.Repository.RowRepository;
-import com.quickapply.quickapply.models.RowsSection;
+import com.quickapply.quickapply.Repository.SectionRepository;
+import com.quickapply.quickapply.models.*;
 import com.quickapply.quickapply.services.RowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,29 +18,30 @@ public class RowImpl implements RowService {
     @Autowired
     private RowRepository rowRepository;
 
-//    @Override
-//    public List<Row> getRows(Long sectionId) throws Exception {
-//        List<Row> rows = new ArrayList<>();
-//        rowRepository.
-//        return rows;
-//    }
+    @Autowired
+    private SectionRepository sectionRepository;
+
+
+    @Autowired
+    private ColumnsRepository columnsRepository;
 
     @Override
-    public String addRow(Long id, RowsSection data) throws Exception {
-//        Optional<Sections> sections = sectionRepository.findById(id);
-//        if (sections.isPresent()) {
-//            List<Row> row = new ArrayList<>(sections.get().getRow());
-//            Row val = Row.builder().title(data.getTitle()).details(data.getDetails()).build();
-//            row.add(val);
-//            sections.get().setRow(row);
+    public List<RowsSection> getRows() throws Exception {
+        List<RowsSection> rows = new ArrayList<>();
+        return rowRepository.findAll();
+    }
 
-//            System.out.println(sections);
-//            sectionRepository.save(sections.get());
-//            return "Row added successfully!!";
-//        }
-//        throw new Exception("Sections not found");
 
-        return "";
+    @Override
+    public RowsSection addRow(Long id, RowsSection data) throws Exception {
+
+        Optional<Sections> design = sectionRepository.findById(id);
+        if (design.isPresent()) {
+            data.setSections(design.get());
+            RowsSection rowData = rowRepository.save(data);
+            return rowData;
+        }
+        throw new Exception("Section id id not found");
     }
 
     @Override
@@ -59,4 +65,23 @@ public class RowImpl implements RowService {
         }
         throw new Exception("Design not found");
     }
+
+    //    columns
+    @Override
+    public Columns addColumns(Long id, Columns data) throws Exception {
+        Optional<RowsSection> design = rowRepository.findById(id);
+        if (design.isPresent()) {
+
+            data.setRows(design.get());
+            Columns ColumnData = columnsRepository.save(data);
+            return ColumnData;
+        }
+        throw new Exception("Row id id not found");
+    }
+
+    @Override
+    public List<Columns> getColumns() throws Exception {
+        return columnsRepository.findAll();
+    }
+
 }

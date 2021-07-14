@@ -17,7 +17,7 @@ public class Columns {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long columnId;
-
+    private String type;
     @Embedded
     private InputModel inputModel;
 
